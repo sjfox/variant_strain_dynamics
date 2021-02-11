@@ -9,7 +9,7 @@ Csnippet('
           // Calculate disease 1 pathway
           // initial infection pathway
           double new_E01 = rbinom(S, 1 - exp(-(beta1t/N*I01 + beta1t/N*I21)*dt));
-          double leaving_E01 = rbinom(E01, 1 - exp(-eta*dt));
+          double leaving_E01 = rbinom(E01, 1 - exp(-(eta + mu)*dt));
           double new_I01 = rbinom(leaving_E01, eta / (eta + mu));
           double new_I02_mutant = leaving_E01 - new_I01;
           

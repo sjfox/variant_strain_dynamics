@@ -5,7 +5,7 @@ sapply(c("code/covid_variant_pomp.R",
          'code/helper_fxns.R'), source)
 
 
-init_parms <- get_init_two_strain_parms()
+init_parms <- get_init_two_strain_parms(parm_vals = c(mu = 1/1000000))
 accum_vars <- get_twostrain_accum_vars()
 data_list <- get_data_and_covariate_table(rt_shape = 'cyclical-med')
  
@@ -24,7 +24,7 @@ pomp(data = data_list$data,
 
 
 sims <- simulate(two_strain_model,
-         nsim = 1000) %>% 
+         nsim = 100) %>% 
   as('data.frame') %>% 
   as_tibble() 
 
@@ -37,3 +37,8 @@ sims %>%
     geom_line(alpha = .3) +
     facet_wrap(~key)
 
+# sims %>% 
+#   group_by(.id) %>% 
+#   summarize(totalI1 = sum(NI01 + NI21),
+#             totalI2 = sum(NI02 + N_mutant + NI12),
+#             newmutants = sum(N_mutant))

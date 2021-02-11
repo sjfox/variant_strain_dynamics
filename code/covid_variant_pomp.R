@@ -132,7 +132,7 @@ c("S",
 ) -> two_strain_statenames
 
 get_init_two_strain_parms <- function(parm_vals = NULL){
-    c(eta = 1/2.9, #rate to become infectious
+    c(eta = 1/2.9, # rate to become infectious
       # beta1 = 0.43, # transmission rate
       mu = 1/1000000, # rate which mutants form
       gamma = 1/7, # rate to recover from disease 
